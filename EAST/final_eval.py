@@ -55,6 +55,7 @@ def detect_dataset(model,reg_model ,device, test_img_path, submit_path):
 		# plot_img.save('./'+ os.path.basename(img_file))
 		if boxes is not None:
 			for box in boxes:
+				box = [1 if i <= 0 else i for i in box]
 				cropped_img = drop_img_by_boudingbox(img_file, box)
 				predicted_label = predict_text_by_img(cropped_img, reg_model)
 				if not predicted_label:
